@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ursu_Sofia_Lab2"
         mc:Ignorable="d"
-        Title="Virtual Doughnuts Factory" Height="450" Width="800" ResizeMode="NoResize" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+        Title="Virtual Doughnuts Factory" Height="450" Width="800" ResizeMode="NoResize" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Loaded="frmMain_Loaded">
     <Grid x:Name="lblTitle">
 
         <GroupBox x:Name="gbRaised" Header="Raised" FontWeight="Bold" Margin="51,57,446,233" FontSize="20">
             <Canvas Margin="0,0,68,145">
                 <Label x:Name="lblGlazedRaised" Content="Glazed" Canvas.Left="41" Canvas.Top="29" FontWeight="Bold" FontSize="20"/>
-                <TextBox x:Name="txtGlazedRaise" Canvas.Left="130" Canvas.Top="29" Text="0" TextWrapping="Wrap" Width="120"/>
+                <TextBox x:Name="txtGlazedRaised" Canvas.Left="130" Canvas.Top="29" Text="0" TextWrapping="Wrap" Width="120"/>
                 <Label x:Name="lblSugarRaised" Content="Sugar" Canvas.Left="46" Canvas.Top="66"/>
                 <TextBox x:Name="txtSugarRaised" Canvas.Left="130" Canvas.Top="66" Text="0" TextWrapping="Wrap" Width="120"/>
 
@@ -44,19 +44,24 @@
                 <Button x:Name="btnCheckOut" Content="Check Out" Canvas.Left="662" Canvas.Top="104" FontSize="15" Width="91" Height="32"/>
             </Canvas>
         </GroupBox>
-        <Menu x:Name="mnuMain"  Margin="0,0,623,377">
+        <Menu x:Name="mnuMain" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top"
+Width="131">
             <MenuItem Header="File">
-                <MenuItem Header="Exit"/>
+                <MenuItem x:Name="stopToolStripMenuItem" Header="Exit" Click="exitToolStripMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="_Doughnuts">
                 <MenuItem Header="Make">
                     <MenuItem Header="Raised">
-                        <MenuItem x:Name="glazedMenuItem" Header="Glazed"/>
-                        <MenuItem x:Name="sugarMenuItem" Header="Sugar"/>
+                        <MenuItem x:Name="glazedToolStripMenuItem" Header="Glazed"
+Click="glazedToolStripMenuItem_Click" IsCheckable="True"/>
+                        <MenuItem x:Name="sugarToolStripMenuItem" Header="Sugar"
+IsCheckable="True" Click="SugarToolStripMenuItem_Click"/>
                     </MenuItem>
                     <MenuItem Header="Filled"/>
                 </MenuItem>
+                <MenuItem x:Name="mnuStop" Header="Stop"
+Click="StopToolStripMenuItem_Click"/>
             </MenuItem>
-        </Menu>
+        </Menu>
     </Grid>
 </Window>
