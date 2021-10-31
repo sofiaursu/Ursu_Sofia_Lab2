@@ -21,7 +21,7 @@ namespace Ursu_Sofia_Lab2
     public partial class MainWindow : Window
     {
         private DoughnutMachine myDoughnutMachine;
-      
+
         private int mRaisedGlazed;
         private int mRaisedSugar;
         private int mFilledLemon;
@@ -36,6 +36,9 @@ namespace Ursu_Sofia_Lab2
         }
         private void sugarToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            glazedToolStripMenuItem.IsChecked = false;
+            sugarToolStripMenuItem.IsChecked = true;
+            myDoughnutMachine.MakeDoughnuts(DoughnutType.Sugar);
 
         }
         private void DoughnutCompleteHandler()
@@ -46,11 +49,22 @@ namespace Ursu_Sofia_Lab2
                     mRaisedGlazed++;
                     txtGlazedRaised.Text = mRaisedGlazed.ToString();
                     break;
-
                 case DoughnutType.Sugar:
                     mRaisedSugar++;
                     txtSugarRaised.Text = mRaisedSugar.ToString();
                     break;
+                case DoughnutType.Lemon:
+                    mFilledLemon++;
+                    txtLemonFilled.Text = mFilledLemon.ToString(); 
+                    break;
+                case DoughnutType.Chocolate:
+                    mFilledChocolate++;
+                    txtChocolateFilled.Text = mFilledChocolate.ToString();
+                    break;
+                case DoughnutType.Vanilla:
+                    mFilledVanilla++;
+                    txtVanillaFilled.Text = mFilledVanilla.ToString(); break;
+
             }
 
         }
@@ -68,6 +82,7 @@ namespace Ursu_Sofia_Lab2
 
         private void frmMain_Loaded(object sender, RoutedEventArgs e)
         {
+            myDoughnutMachine = new DoughnutMachine();
             myDoughnutMachine.DoughnutComplete += new
             DoughnutMachine.DoughnutCompleteDelegate(DoughnutCompleteHandler);
         }
@@ -75,6 +90,8 @@ namespace Ursu_Sofia_Lab2
         private void stopToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
             myDoughnutMachine.Enabled = false;
+            this.Title = " Virtual Doughtnuts Factory ";
+            e.Handled = true;
         }
 
         private void txtQuantity_KeyPress(object sender, KeyEventArgs e)
@@ -89,6 +106,24 @@ namespace Ursu_Sofia_Lab2
         private void exitToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void FilledItems_Click(object sender, RoutedEventArgs e)
+        {
+            string DoughnutFlavour;
+
+            MenuItem SelectedItem = (MenuItem)e.OriginalSource;
+            DoughnutFlavour = SelectedItem.Header.ToString();
+            Enum.TryParse(DoughnutFlavour, out DoughnutType myFlavour);
+            myDoughnutMachine.MakeDoughnuts(myFlavour);
+
+        }
+        private void FilledItemsShow_Click(object sender, RoutedEventArgs e)
+        {
+            string mesaj;
+            MenuItem SelectedItem = (MenuItem)e.OriginalSource;
+            mesaj = SelectedItem.Header.ToString() + " doughnuts are being cooked!";
+            this.Title = mesaj;
         }
     }
 }
