@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Ursu_Sofia_Lab2"
         mc:Ignorable="d"
         Title="Virtual Doughnuts Factory" Height="450" Width="800" ResizeMode="NoResize" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Loaded="frmMain_Loaded">
-    <Grid x:Name="lblTitle">
-
+    <Grid x:Name="lblTitle"
+          MenuItem.Click="FilledItemsShow_Click">
         <GroupBox x:Name="gbRaised" Header="Raised" FontWeight="Bold" Margin="51,57,446,233" FontSize="20">
             <Canvas Margin="0,0,68,145">
                 <Label x:Name="lblGlazedRaised" Content="Glazed" Canvas.Left="41" Canvas.Top="29" FontWeight="Bold" FontSize="20"/>
@@ -55,13 +55,17 @@ Width="131">
                         <MenuItem x:Name="glazedToolStripMenuItem" Header="Glazed"
 Click="glazedToolStripMenuItem_Click" IsCheckable="True"/>
                         <MenuItem x:Name="sugarToolStripMenuItem" Header="Sugar"
-IsCheckable="True" Click="SugarToolStripMenuItem_Click"/>
+Click="sugarToolStripMenuItem_Click" IsCheckable="True"/>
                     </MenuItem>
-                    <MenuItem Header="Filled"/>
+                    <MenuItem Header="Filled" Click="FilledItems_Click"/>
+                        <MenuItem x:Name="lemonFilledMenuItem" Header="Lemon" IsCheckable="True"/>
+                        <MenuItem x:Name="chocolateFilledMenuItem" Header="Chocolate" IsCheckable="True"/>
+                        <MenuItem x:Name="vanillaFilledMenuItem" Header="Vanilla" IsCheckable="True"/>
                 </MenuItem>
                 <MenuItem x:Name="mnuStop" Header="Stop"
 Click="StopToolStripMenuItem_Click"/>
             </MenuItem>
-        </Menu>
+        </Menu>
+
     </Grid>
 </Window>
